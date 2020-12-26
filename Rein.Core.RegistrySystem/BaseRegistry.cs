@@ -18,7 +18,7 @@
         /// <summary>
         /// MUST BE CONSTANT RETURN
         /// </summary>
-        protected virtual SByte priority => 0;
+        protected internal virtual SByte priority => 0;
         /// <summary>
         /// MUST BE CONSTANT RETURN
         /// </summary>
