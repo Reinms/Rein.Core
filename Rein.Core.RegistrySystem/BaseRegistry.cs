@@ -11,7 +11,7 @@
         public MetaRegistry.RegistrationToken? regToken { get; set; }
         internal abstract RegistryHandle _handle { get; }
         internal Stage _stage { get; set; } = Stage.PreInit;
-        protected virtual IEnumerable<RegistryHandle> dependencies => Enumerable.Empty<RegistryHandle>();
+        protected internal virtual IEnumerable<RegistryHandle> dependencies => Enumerable.Empty<RegistryHandle>();
         /// <summary>
         /// MUST BE CONSTANT RETURN
         /// </summary>
