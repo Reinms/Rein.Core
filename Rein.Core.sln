@@ -23,9 +23,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rein.Core.RegistrySystem", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rein.Core.RegistrySystem._Tests", "Rein.Core.RegistrySystem._Tests\Rein.Core.RegistrySystem._Tests.csproj", "{C2DD92BE-8D83-4DBA-A1C6-082D68010F94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rein.Core.NetUtils", "Rein.Core.NetUtils\Rein.Core.NetUtils.csproj", "{1DF1D4E5-86E3-4DAD-85A5-058E1E40091E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rein.Core.NetUtils", "Rein.Core.NetUtils\Rein.Core.NetUtils.csproj", "{1DF1D4E5-86E3-4DAD-85A5-058E1E40091E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{EC696CF7-BEAF-4895-AB1D-55A539EB1BB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "___Solution Items", "___Solution Items", "{E6EBCEE8-CAE8-4ACA-9B48-2622E876F66D}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
