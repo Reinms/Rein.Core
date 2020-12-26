@@ -212,7 +212,6 @@
                 //TODO: Iterate and log errors
 
                 //Does not stop execution because this event is an extension point and should not be used for implementation critical behaviours.
-                //TODO: Add implementation point for this purpose as well
             }
             if(!RunOnStandardTokensCreated())
             {
