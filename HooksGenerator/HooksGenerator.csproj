@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <LangVersion>Preview</LangVersion>
+	  <Nullable>enable</Nullable>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <AssemblyVersion>1.0.0.202</AssemblyVersion>
+	  <FileVersion>1.0.0.202</FileVersion>
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="dnlib" Version="3.3.2" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BaseSourceGenerator\BaseSourceGenerator.csproj" />
+	</ItemGroup>
+</Project>
