@@ -7,6 +7,9 @@
 
     public abstract class Registry : MetaRegistry.IRegistryDef
     {
+        /// <summary>
+        /// MUST BE CONSTANT RETURN
+        /// </summary>
         public abstract String guid { get; }
         public MetaRegistry.RegistrationToken? regToken { get; set; }
         internal abstract RegistryHandle _handle { get; }
@@ -16,7 +19,14 @@
         /// MUST BE CONSTANT RETURN
         /// </summary>
         protected virtual SByte priority => 0;
+        /// <summary>
+        /// MUST BE CONSTANT RETURN
+        /// </summary>
         protected virtual Boolean acceptsProcedural => true;
+        /// <summary>
+        /// MUST BE CONSTANT RETURN
+        /// </summary>
+        protected virtual Boolean autoRegisterTokens => true;
         protected virtual void OnInitFinished() { }
 
         protected internal abstract Boolean Init();

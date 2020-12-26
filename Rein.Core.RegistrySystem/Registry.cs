@@ -52,6 +52,8 @@
 
 
         #region External interface
+        public static Boolean tokensRegisteredOnAdd => instance.autoRegisterTokens;
+
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static RegistrationToken Add(TDef def)
         {
