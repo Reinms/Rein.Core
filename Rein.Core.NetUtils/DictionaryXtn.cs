@@ -9,7 +9,7 @@
 
     public static class DictionaryXtn
     {
-        public static IEnumerable<(TKey key, TValue value)> AsPairs<TKey, TValue>(this IDictionary<TKey, TValue> dict) => dict.Select(KvpXtn.Deconstruct);
+        public static IEnumerable<(TKey key, TValue value)> AsPairs<TKey, TValue>(this IDictionary<TKey, TValue> dict) => dict.Select(Deconstruct);
         public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> kvp, out TKey a, out TValue b) => (a, b) = (kvp.Key, kvp.Value);
         public static (TKey key, TValue value) Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> kvp) => (kvp.Key, kvp.Value);
     }
