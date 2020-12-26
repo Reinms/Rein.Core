@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Rein.Core.NetUtils;
+
     //DO NOT SIMPLIFY THESE GENERIC TYPES, VISUAL STUDIO IS UNABLE TO HANDLE IT AND WILL HARD LOCK REPEATEDLY ON STARTUP. SERIOUSLY... DON'T...
     public struct SimpleBackend<TRegistry, TDef> : Registry<TRegistry, TDef, SimpleBackend<TRegistry, TDef>>.IRegistryBackend
         where TRegistry : Registry<TRegistry, TDef, SimpleBackend<TRegistry, TDef>>, new()

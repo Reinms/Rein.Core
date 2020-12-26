@@ -8,8 +8,6 @@
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
-
     using Rein.Core.NetUtils;
 
     public abstract class Registry<TRegistry, TDef, TBackend> : Registry
@@ -19,7 +17,7 @@
     {
         #region Overrides
         public sealed override String guid { get; } = $"{typeof(TRegistry).Assembly.GetName().Name}::{typeof(TRegistry).FullName}";
-        internal sealed override IRegistryHandle _handle => handle;
+        internal sealed override RegistryHandle _handle { get; } = handle;
         protected internal sealed override Boolean Init() => TryInit();
         #endregion
 
@@ -89,7 +87,7 @@
         public static IEnumerable<RegistrationToken> FindRegTokens(Func<RegistrationToken, Boolean> condition, Boolean includeUnregistered) => includeUnregistered ? RegistrationToken.instancesList.Where(condition) : RegistrationToken.instancesList.Where(a => a.isRegistered).Where(condition);
 
         public static UInt64 count => backend.count;
-        public static IRegistryHandle handle => new Handle();
+        public static RegistryHandle handle => new Handle();
         #endregion
 
 
@@ -134,7 +132,7 @@
         }
         internal static Stage stage { get => instance._stage; set => instance._stage = value; }
         internal static Int32 proceduralCounter => pendingProceduralTokens.Count;
-        internal static IEnumerable<IRegistryHandle> dependencyHandles => instance.dependencies;
+        internal static IEnumerable<RegistryHandle> dependencyHandles => instance.dependencies;
         #endregion
 
 
@@ -519,12 +517,10 @@
                 this.element = null;
             }
         }
-        private struct Handle : IRegistryHandle
+        private sealed class Handle : RegistryHandle
         {
-            public Boolean initCompleted => stage == Stage.Finalized;
+            private protected sealed override Registry target => instance;
         }
         #endregion
     }
-
-
 }

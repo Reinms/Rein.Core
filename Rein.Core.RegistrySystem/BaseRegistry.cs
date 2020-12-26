@@ -2,15 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public abstract class Registry : MetaRegistry.IRegistryDef
     {
         public abstract String guid { get; }
         public MetaRegistry.RegistrationToken? regToken { get; set; }
-        internal abstract IRegistryHandle _handle { get; }
+        internal abstract RegistryHandle _handle { get; }
         internal Stage _stage { get; set; } = Stage.PreInit;
-        protected virtual IEnumerable<IRegistryHandle> dependencies => Enumerable.Empty<IRegistryHandle>();
+        protected virtual IEnumerable<RegistryHandle> dependencies => Enumerable.Empty<RegistryHandle>();
         /// <summary>
         /// MUST BE CONSTANT RETURN
         /// </summary>
