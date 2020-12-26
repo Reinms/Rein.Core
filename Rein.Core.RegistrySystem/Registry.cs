@@ -8,6 +8,8 @@
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
+
     using Rein.Core.NetUtils;
 
     public abstract class Registry<TRegistry, TDef, TBackend> : Registry
@@ -23,6 +25,7 @@
 
 
         #region Overrideables
+        protected virtual Boolean OnStandardTokensCreated() => true;
         protected virtual Boolean CreateAdditionalDefs() => true;
         protected virtual Boolean FirstTimeInit() => true;
         #endregion
@@ -211,6 +214,15 @@
                 //Does not stop execution because this event is an extension point and should not be used for implementation critical behaviours.
                 //TODO: Add implementation point for this purpose as well
             }
+            if(!RunOnStandardTokensCreated())
+            {
+                //TODO: Log Error
+                if(!DisableBackend())
+                {
+                    //TODO: Log Fatal error;
+                }
+                return false;
+            }
             stage = Stage.Init;
             if(!ProcessStandardTokens())
             {
@@ -306,6 +318,11 @@
                 }
             }
             return true;
+        }
+
+        private static Boolean RunOnStandardTokensCreated()
+        {
+            return instance.OnStandardTokensCreated();
         }
 
         private static Boolean ProcessStandardTokens()
