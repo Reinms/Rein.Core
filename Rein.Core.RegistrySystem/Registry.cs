@@ -110,16 +110,16 @@
             if(stage == Stage.PreInit)
             {
                 tok = new(def, isBase, false);
-                tok.Register();
+                if(tokensRegisteredOnAdd) tok.Register();
             } else if(stage == Stage.Init || (stage == Stage.Finalized && MetaRegistry.stage == Stage.Init))
             {
                 tok = new(def, isBase, true);
-                tok.Register();
+                if(tokensRegisteredOnAdd) tok.Register();
                 pendingProceduralTokens.Enqueue(tok);
             } else
             {
                 tok = new(def, isBase, false);
-                tok.Register();
+                if(tokensRegisteredOnAdd) tok.Register();
             }
             return tok;
         }
