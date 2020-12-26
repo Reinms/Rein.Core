@@ -13,6 +13,10 @@
     using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.Text;
 
+    /// <summary>
+    /// This generator instead outputs source text to a .cs file in order to allow intellisense to work with generated code.
+    /// This is by no means an ideal solution, and once the tooling for source generators is in a better place this will be switched over to use them completely.
+    /// </summary>
     public abstract class BaseSourceGenerator : ISourceGenerator
     {
         /// <summary>
