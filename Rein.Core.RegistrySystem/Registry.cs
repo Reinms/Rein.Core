@@ -26,6 +26,8 @@
         protected virtual Boolean OnStandardTokensCreated() => true;
         protected virtual Boolean CreateAdditionalDefs() => true;
         protected virtual Boolean FirstTimeInit() => true;
+        protected virtual void OnTokenRegister(RegistrationToken token) { }
+        protected virtual void OnTokenUnregister(RegistrationToken token) { }
         #endregion
 
         #region Abstracts
@@ -106,13 +108,16 @@
             if(stage == Stage.PreInit)
             {
                 tok = new(def, isBase, false);
+                tok.Register();
             } else if(stage == Stage.Init || (stage == Stage.Finalized && MetaRegistry.stage == Stage.Init))
             {
                 tok = new(def, isBase, true);
+                tok.Register();
                 pendingProceduralTokens.Enqueue(tok);
             } else
             {
                 tok = new(def, isBase, false);
+                tok.Register();
             }
             return tok;
         }
@@ -358,6 +363,18 @@
         private static readonly ConcurrentQueue<RegistrationToken> pendingProceduralTokens = new();
         #endregion
 
+        #region Private Functions
+        private static void OnTokenRegistration(RegistrationToken token)
+        {
+            instance.OnTokenRegister(token);
+        }
+        private static void OnTokenUnregistration(RegistrationToken token)
+        {
+            instance.OnTokenUnregister(token);
+        }
+
+        #endregion
+
 
         #region Nested Types
         public interface IRegistryBackend
@@ -486,6 +503,27 @@
             /// Has this token's guid been overriden by another with the same guid?
             /// </summary>
             public Boolean isOverriden { get; internal set; }
+
+
+            public void Register()
+            {
+                if(!this.isRegistered)
+                {
+                    this.isRegistered = true;
+                    OnTokenRegistration(this);
+                }
+            }
+
+            public void UnRegister()
+            {
+                if(this.isRegistered)
+                {
+                    this.isRegistered = false;
+                    OnTokenUnregistration(this);
+                }
+            }
+
+
 
             /// <summary>
             /// Only assigned if debugging is set (Debugging disable not implemented though lol)
